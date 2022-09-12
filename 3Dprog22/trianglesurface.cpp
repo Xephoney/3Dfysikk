@@ -4,12 +4,12 @@
 #include "toolbox.h"
 
 
-TriangleSurface::TriangleSurface() : VisualObject("blinn_phongshader")
+TriangleSurface::TriangleSurface() : VisualObject("plainshader")
 {
 
 }
 
-TriangleSurface::TriangleSurface(std::string filnavn) : VisualObject("blinn_phongshader")
+TriangleSurface::TriangleSurface(std::string filnavn) : VisualObject("plainshader")
 {
     readFile(filnavn);
 }
@@ -36,19 +36,31 @@ void TriangleSurface::readFile(std::string filnavn)
     file.open("../3Dprog22/"+filnavn);
 
     if (file.is_open()) {
+        // Vertexer
         int n;
+
+        //Indexer
+        int m;
         Vertex vertex;
         file >> n;
         mVertices.reserve(n);
         for (int i=0; i<n; i++) {
              file >> vertex;
+             vertex.m_color = vertex.m_normal;
              mVertices.push_back(vertex);
+        }
+        file >> m;
+        for(int i = 0; i < m; i++)
+        {
+            int index;
+            file >> index;
+            mIndices.push_back(index);
         }
         file.close();
     }
 }
 
-void TriangleSurface::init(GLint matrixUniform)
+void TriangleSurface::init()
 {
     VisualObject::init();
 
@@ -65,12 +77,10 @@ void TriangleSurface::init(GLint matrixUniform)
     glBindBuffer(GL_ARRAY_BUFFER, mVBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)NULL);
     glEnableVertexAttribArray(0);
+
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_normal) );
     glEnableVertexAttribArray(1);
 
-    // 3nd attribute buffer : UV
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_uv) );
-    glEnableVertexAttribArray(2);
 
     //Index buffer binding so that its easier to create objects without duplicate vertices.
     glGenBuffers( 1, &mIBO );
@@ -84,7 +94,7 @@ void TriangleSurface::draw(const glm::mat4& pMat)
     VisualObject::draw(pMat);
 
     glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mModelMatrix));
-    glDrawArrays(GL_TRIANGLES, 0, mVertices.size());
+    glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, 0);
 }
 
 void TriangleSurface::makeTriangle(const glm::vec3 &a, const glm::vec3 &b, const glm::vec3 &c)

@@ -9,7 +9,7 @@ public:
    ~TriangleSurface() override;
    void writeToFile(std::string filNavn);
    void readFile(std::string filnavn);
-   virtual void init(GLint matrixUniform) override;
+   virtual void init() override;
    virtual void draw(const glm::mat4& pMat) override;
    void move(float x, float y, float z) override { mPosition.x = x; mPosition.y = y; mPosition.z = z;};
    void makeQuad(const glm::vec3& a,const glm::vec3& b,const glm::vec3& c, const glm::vec3& d);

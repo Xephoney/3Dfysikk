@@ -85,6 +85,7 @@ private:
     GLint  mModelMatrixUniform {0} ;              //OpenGL reference to the Uniform in the shader program
 
     QTimer *mRenderTimer{nullptr};          //timer that drives the gameloop
+    QTimer *mPhysicsTimer{nullptr};          //timer that drives the gameloop
     QElapsedTimer mTimeStart;               //time variable that reads the calculated FPS
     std::unordered_map<int, bool> mKeyboard;
     std::unordered_map<int, bool> mMouse;

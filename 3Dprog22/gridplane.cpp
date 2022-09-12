@@ -16,15 +16,8 @@ void GridPlane::init(GLint matrixUniform)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_xyz));
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_normal) );
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_color) );
     glEnableVertexAttribArray(1);
-
-    // 3nd attribute buffer : UV
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_uv) );
-    glEnableVertexAttribArray(2);
-
-    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_color) );
-    glEnableVertexAttribArray(3);
 
     glBindVertexArray(0);
 }
@@ -50,7 +43,7 @@ GridPlane::GridPlane(int size) : VisualObject("plainshader")
     const float primaryTint = 0.4f;
     //const float secondaryTint = 0.3f;
 
-    int steps = 6;
+    int steps = 1;
 
     //z axis
     for(int x = -sizeHalf; x < sizeHalf+1; x+=steps)

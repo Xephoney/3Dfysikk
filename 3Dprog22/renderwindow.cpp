@@ -95,11 +95,6 @@ void RenderWindow::init()
     mCamera->perspective(FOV, 1920/1080, 0.01, 1000.0);
     mCamera->lookAt( {0, 0, 0});
 
-    // Initialiserer treet med totalt 16 subTre;
-    // Hver av subtreene er 8x8 enheter i størrelse.
-    mTre.init(128);
-    mTre.subDivide(2);
-
     //Her er kalles funksjonen som lager nesten alle objektene, utenom de vi har gått igjennom ovenfor
     createObjects();
 
@@ -114,7 +109,10 @@ void RenderWindow::init()
 void RenderWindow::createObjects()
 {
     mMap.insert(std::pair<std::string,VisualObject*>{"Grid", new GridPlane(240)});
-    mMap["Grid"]->Translate(0,2,0);
+    //mMap["Grid"]->Translate(0,2,0);
+
+    mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
+
 }
 
 
@@ -359,13 +357,7 @@ void RenderWindow::checkCollision()
 void RenderWindow::updateShaders()
 {
     //Dobbeltsjekker at lyset(NPC) er satt inn i scenen før jeg sender det til shaderen.
-    if(mMap.find("NPC") != mMap.end())
-    {
-        //Oppgave 2 og 3
-        ShaderCoordinator::getInstance().updateShaderUniformVec3("blinn_phongshader", "lightPosition", mMap["NPC"]->getPosition());
-        ShaderCoordinator::getInstance().updateShaderUniformVec3("blinn_phongtextureshader", "lightPosition", mMap["NPC"]->getPosition());
 
-    }
     //Sender inn kamera posisjonen. Denne trenger ikke en sjekk fordi det skal alltid være et kamera til stedet! ;)
     ShaderCoordinator::getInstance().updateShaderUniformVec3("blinn_phongshader", "cameraPosition", mCamera->getViewPosition());
     ShaderCoordinator::getInstance().updateShaderUniformVec3("blinn_phongtextureshader", "cameraPosition", mCamera->getViewPosition());

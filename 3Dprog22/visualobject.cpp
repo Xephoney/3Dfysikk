@@ -35,9 +35,6 @@ VisualObject::~VisualObject()
 void VisualObject::init()
 {
     initializeOpenGLFunctions();
-
-    //Oppgave 7, 8 og 9
-
     mShader->use();
     mMatrixUniform = mShader->GetUniformLocation("model");
 
@@ -47,7 +44,6 @@ void VisualObject::init()
     startPos    = getPosition();
     startRot    = getRotation();
     startScale  = getScale();
-
 }
 
 void VisualObject::init(GLint matrixUniform)
@@ -105,8 +101,6 @@ void VisualObject::draw(const glm::mat4& pMat)
 void VisualObject::tick(const float &dt)
 {
     timeSinceCreation+=dt;
-
-
     if(cr == CollisionResponse::DYNAMIC)
     {
         vertexPositions.clear();
