@@ -26,6 +26,7 @@ SOURCES += main.cpp \
 
 HEADERS += \
     Vertex.h \
+    WorldCoordinator.h \
     bounds.h \
     camera.h \
     cubemap.h \
