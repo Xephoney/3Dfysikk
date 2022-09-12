@@ -175,7 +175,7 @@ void RenderWindow::render()
         //Tegne objektene i Hash-map
         for(auto& it : mMap)
         {
-            it.second->ToggleDebugDisplay(false);
+            it.second->ToggleDebugDisplay(true);
             it.second->draw(glm::mat4{1.f});
         }
 

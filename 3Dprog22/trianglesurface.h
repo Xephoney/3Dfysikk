@@ -14,6 +14,7 @@ public:
    void move(float x, float y, float z) override { mPosition.x = x; mPosition.y = y; mPosition.z = z;};
    void makeQuad(const glm::vec3& a,const glm::vec3& b,const glm::vec3& c, const glm::vec3& d);
    void makeQuad(const glm::vec3 &a, const glm::vec3 &b, const glm::vec3 &c, const glm::vec3 &d, const glm::vec3& farge);
+   void makeTriangle(const int &indx0, const int &indx1, const int &indx2);
 protected:
    void makeTriangle(const glm::vec3& a,const glm::vec3& b,const glm::vec3& c);
    void makeTriangle(const glm::vec3& a,const glm::vec3& b,const glm::vec3& c, const glm::vec3& farge);

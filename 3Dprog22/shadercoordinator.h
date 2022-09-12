@@ -75,9 +75,7 @@ private:
         loadShader ( "blinn_phongtextureshader" );
         loadShader ( "unlit_texture" );
 
-
         m_Shaders.erase("skybox");
-
     }
 
 };

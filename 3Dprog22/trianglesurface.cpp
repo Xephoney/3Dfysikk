@@ -107,6 +107,13 @@ void TriangleSurface::makeTriangle(const glm::vec3 &a, const glm::vec3 &b, const
     mIndices.push_back((int)mIndices.size());
 }
 
+void TriangleSurface::makeTriangle(const int &indx0, const int &indx1, const int &indx2)
+{
+    mIndices.push_back(indx0);
+    mIndices.push_back(indx1);
+    mIndices.push_back(indx2);
+}
+
 void TriangleSurface::makeQuad(const glm::vec3 &a, const glm::vec3 &b, const glm::vec3 &c, const glm::vec3 &d)
 {
     mVertices.push_back(Vertex{ a.x, a.y, a.z, 0.5, 0.5, 0.5, 0, 0});
