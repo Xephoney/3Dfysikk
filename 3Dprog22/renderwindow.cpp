@@ -19,7 +19,6 @@
 #include "mainwindow.h"
 #include "cubemap.h"
 
-
 #define FOV 50.f
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
