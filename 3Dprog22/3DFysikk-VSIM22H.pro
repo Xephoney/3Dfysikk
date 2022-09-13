@@ -24,6 +24,7 @@ SOURCES += main.cpp \
     visuallineobject.cpp \
     visualobject.cpp
 
+
 HEADERS += \
     Vertex.h \
     WorldCoordinator.h \

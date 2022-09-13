@@ -111,7 +111,8 @@ void RenderWindow::createObjects()
     //mMap["Grid"]->Translate(0,2,0);
 
     mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
-
+    mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new OctahedronBall(3,"plainshader")});
+    mMap["Ball"]->Translate(0,8,0);
 }
 
 

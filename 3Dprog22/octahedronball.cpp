@@ -112,3 +112,10 @@ void OctahedronBall::draw(const glm::mat4& pMat)
     glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mModelMatrix));
     glDrawArrays(GL_TRIANGLES, 0, (GLsizei)mVertices.size());
 }
+
+void OctahedronBall::tick(const float &dt)
+{
+    VisualObject::tick(dt);
+    m_velocity = m_velocity + m_acceleration * dt;
+    mPosition = mPosition + m_velocity * dt;
+}
