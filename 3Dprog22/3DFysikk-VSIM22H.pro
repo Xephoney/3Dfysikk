@@ -15,6 +15,7 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     mesh.cpp \
     octahedronball.cpp \
+    physicsobject.cpp \
     quadtree.cpp \
     renderwindow.cpp \
     shader.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     mainwindow.h \
     mesh.h \
     octahedronball.h \
+    physicsobject.h \
     quadtree.h \
     renderwindow.h \
     shader.h \
