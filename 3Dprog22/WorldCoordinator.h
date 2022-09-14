@@ -3,14 +3,21 @@
 
 #include <glm/glm.hpp>
 #include "visualobject.h"
+#include <fstream>
 
 class World{
 public:
     static World& getWorld();
 
-    float find(VisualObject* p){
-        //TODO: make this lmao
-        return 0;
+
+    glm::vec3 find(){
+
+    }
+    glm::vec3 getNormal(int TriIndex){
+        glm::vec3 returnVec;
+
+
+        return returnVec;
     }
     glm::vec3 barycentricCoordinates(const glm::vec2 &p1, const glm::vec2 &p2, const glm::vec2 p3, const glm::vec2 point)
     {
@@ -42,7 +49,6 @@ public:
     //qDebug()<<returnVec.z;
     return returnVec;
     }
-
 };
 
 #endif // WORLDCOORDINATOR_H
