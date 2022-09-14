@@ -10,9 +10,12 @@ private:
    void oktaederUnitBall();
 public:
    OctahedronBall();
-   OctahedronBall(int n=0, const std::string& shader = "plainshader");
+   OctahedronBall(int n=3, const std::string& shader = "plainshader");
    ~OctahedronBall();
    void init(GLint matrixUniform) override;
    void draw(const glm::mat4& pMat) override ;
+   void tick(const float& dt) override;
    void move(float dx, float dy, float dz) override {mPosition = {dx,dy,dz};};
+
+   glm::vec3 velocity;
 };

@@ -19,6 +19,7 @@
 #include "mainwindow.h"
 #include "cubemap.h"
 
+
 #define FOV 50.f
 
 RenderWindow::RenderWindow(const QSurfaceFormat &format, MainWindow *mainWindow)
@@ -111,6 +112,11 @@ void RenderWindow::createObjects()
     //mMap["Grid"]->Translate(0,2,0);
 
     mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
+//    glm::vec3 n = static_cast<TriangleSurface*>(mMap["Triangles"])->triangleNormal(0);
+//    qDebug() << "Calculated Normal: \n" << "("<<n.x<<", "<<n.y<<", "<<n.z<<")";
+
+    mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new OctahedronBall(3)});
+    mMap["Ball"]->Translate(0,20,0);
 
 }
 
@@ -167,7 +173,7 @@ void RenderWindow::render()
             it.second->tick(deltaTime);
 
         //Sjekker kollisjon
-        checkCollision();
+//        checkCollision();
 
         //Tegne objektene i Hash-map
         for(auto& it : mMap)
@@ -177,8 +183,6 @@ void RenderWindow::render()
         }
 
         checkForGLerrors();
-
-        checkGameCompletion();
     }
     else
     {
@@ -350,7 +354,19 @@ void RenderWindow::inputProcessing()
 
 void RenderWindow::checkCollision()
 {
+    // Gir alle et physics-tick
+    for(auto& obj : mMap)
+    {
+        // Teste distansen mellom punktet fra barysentriske til ballen er mindre enn radiusen til ballen
 
+        // dir = bCoord - obj.position
+        // glm::length(dir) <= obj.radius
+
+        {
+            //
+        }
+
+    }
 }
 
 void RenderWindow::updateShaders()

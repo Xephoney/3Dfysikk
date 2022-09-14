@@ -50,6 +50,8 @@ void TriangleSurface::readFile(std::string filnavn)
              mVertices.push_back(vertex);
         }
         file >> m;
+        mIndices.reserve(m);
+        triangleCount = m / 3;
         for(int i = 0; i < m; i++)
         {
             int index;
@@ -95,6 +97,24 @@ void TriangleSurface::draw(const glm::mat4& pMat)
 
     glUniformMatrix4fv( mMatrixUniform, 1, GL_FALSE, glm::value_ptr(mModelMatrix));
     glDrawElements(GL_TRIANGLES, mIndices.size(), GL_UNSIGNED_INT, 0);
+}
+
+glm::vec3 TriangleSurface::triangleNormal(int triangleIndex)
+{
+   if(triangleCount == 0 && mIndices.size() == 0)
+        return glm::vec3{0.f};
+    if(triangleIndex * 3 > triangleCount)
+        return glm::vec3 {0.f};
+
+    glm::vec3 vPos[3];
+    for(int i = 0; i < 3; i++)
+    {
+        vPos[i] = mVertices[triangleIndex * 3 + i].m_xyz;
+    }
+    glm::vec3 a = vPos[1]-vPos[0];
+    glm::vec3 b = vPos[2]-vPos[0];
+    return glm::normalize(glm::cross(a,b));
+
 }
 
 void TriangleSurface::makeTriangle(const glm::vec3 &a, const glm::vec3 &b, const glm::vec3 &c)
