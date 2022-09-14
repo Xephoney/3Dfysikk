@@ -53,7 +53,16 @@ void PhysicsObject::caluclateAcceleration()
     glm::vec3 k;  //Vektor mellom triangle til ballens sendtrum
     glm::normalize(k);
     glm::normalize(n);
-   float angle =  acos(glm::dot(k,n));
+
+     float angle =  acos(glm::dot(k,n));
+     glm::vec3 G = glm::vec3(g.x*m_weight  * cos(angle),g.y*m_weight  * cos(angle),g.z*m_weight  * cos(angle));
+     glm::vec3 N = glm::vec3(G.length()*cos(angle) * n.x, G.length()*cos(angle) * n.y, G.length()*cos(angle) * n.z);
+
+    float a = m_weight*g.length()*sin(angle); //dette er lengden som akselerasjonen skal ha på dette planet.
+
+   m_acceleration = G+n;
+
+
 
     //Kjøre på med samme som over, men med G_y og G
 

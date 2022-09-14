@@ -7,8 +7,8 @@ class PhysicsObject : public  OctahedronBall
 private:
     glm::vec3 m_acceleration { 0,-9.810,0 };
     glm::vec3 m_velocity{ 0 };
-    const float gravity { 9.81 };
-
+    const glm::vec3 g {0, -9.81,0 };
+    float m_weight {0.5};
     struct Triangle {
         glm::vec3 v1;
         glm::vec3 v2;
