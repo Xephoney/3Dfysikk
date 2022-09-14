@@ -1,5 +1,6 @@
 #pragma once
 #include "octahedronball.h"
+#include "toolbox.h"
 
 class PhysicsObject : public  OctahedronBall
 {
@@ -8,7 +9,15 @@ private:
     glm::vec3 m_velocity{ 0 };
     const float gravity { 9.81 };
 
+    struct Triangle {
+        glm::vec3 v1;
+        glm::vec3 v2;
+        glm::vec3 v3;
+    };
 
+    Triangle t;
+    void caluclateAcceleration();
+    float TriangleDegree;
 public:
     PhysicsObject();
     PhysicsObject(int, std::string shader);
