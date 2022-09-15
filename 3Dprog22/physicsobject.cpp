@@ -1,5 +1,5 @@
 #include "physicsobject.h"
-
+#include "WorldCoordinator.h"
 PhysicsObject::PhysicsObject() : OctahedronBall(3,"plainshader")
 {
 
@@ -28,48 +28,64 @@ void PhysicsObject::draw(const glm::mat4 &pMat)
 void PhysicsObject::tick(const float &dt)
 {
     VisualObject::tick(dt);
+
+    World world = World::getWorld();
+    currTriIndex = world.getTriangleIndex(mPosition);
+
+    if(currTriIndex >= 0)
+    {
+        n = world.getNormal(currTriIndex);
+        if(world.distanceToTriangle(mPosition, currTriIndex) < 1.f)
+            qDebug() << "!!!!!!!!!!!! Collision !";
+    }
+
+    if(currTriIndex != prevTriIndex && prevTriIndex != -1)
+    {
+        glm::vec3 n1 = world.getNormal(prevTriIndex);
+        glm::vec3 n2 = world.getNormal(currTriIndex);
+        n = glm::normalize(n1 + n2);
+
+        qDebug() << "Ball over transition from index " << prevTriIndex << " to " << currTriIndex;
+    }
+
     caluclateAcceleration();
-    m_velocity = m_velocity + m_acceleration * dt;
-    mPosition = mPosition + m_velocity * dt;
+
+    m_velocity += m_acceleration * dt;
+    mPosition +=  m_velocity * dt;
 }
 
 void PhysicsObject::caluclateAcceleration()
-{
-//    if(t.v1.y==t.v2.y && t.v2.y==t.v3.y)
-//        TriangleDegree = 0;
-//    else if (t.v1.y == t.v2.y)
-//    {
-//        if(t.v1.y > t.v3.y)
-//            TriangleDegree = 1;
-//    }
+{   
+//    glm::vec3 v12 = t.v2-t.v1;
+//    glm::vec3 v13 = t.v3-t.v1;
+//    glm::vec3 n = glm::cross(v12,v13); //normal vektoren til planet/vertex'en
 
-    //finn normalvektor till planet
-
-    //prosjekter normalvektor på verdens oppvektor
-     //g [nx · nz, ny · nz, n2 z − 1]
-    glm::vec3 v12 = t.v2-t.v1;
-    glm::vec3 v13 = t.v3-t.v1;
-    glm::vec3 n = glm::cross(v12,v13); //normal vektoren til planet/vertex'en
-
-    glm::vec3 p = {0,1,0};  //verdens opp vektor
-    n =glm::normalize(n);
+    glm::vec3 k = {0,1,0};    //verdens opp vektor
     qDebug() << "normal " << n.x << n.y << n.z;
 
-    float angle =  acos(glm::dot(p,n));
-    qDebug() << "angle " << angle;
+    float skalar =  glm::dot(n,k);
+    qDebug() << "skalar " << skalar;
 
     //Stor G har ingenting med vinkelen å gjøre
     //glm::vec3 G = glm::vec3(g.x*m_weight  * cos(angle), g.y*m_weight  * cos(angle), g.z*m_weight  * cos(angle));
-    glm::vec3 G  = g;
+    float G  = glm::length(g) * m_weight;
+    G = abs(G);
 
+//    glm::vec3 G  = g * m_weight;
+//    float angle = (glm::dot(n,k))/(glm::length(n)+glm::length(k));
+
+//    glm::vec3 N = n * (glm::length(G) * acos(angle)) ;
     //glm::vec3 N = glm::vec3(G.length()*cos(angle) * n.x, G.length()*cos(angle) * n.y, G.length()*cos(angle) * n.z);
 
     //float a = m_weight*g.length()*sin(angle); //dette er lengden som akselerasjonen skal ha på dette planet.
     //G *= sin(angle);
-    m_acceleration = G+n;
+
+    //m_acceleration = n * G * skalar + g;
+    m_acceleration = glm::length(g) * glm::vec3(n.x * n.y, pow(n.y,2)-1, n.z*n.y );
+    //m_acceleration = 1/m_weight *(N+G);
+
+    //(glm::normalize(G)+n) * glm::length(g) * (float)sin(angle);
 
 
     //Kjøre på med samme som over, men med G_y og G
-
-    //m_acceleration= gravity*(glm::vec3(n.x*n.z,n.y*n.z,pow(n.z,2)-1));
 }
