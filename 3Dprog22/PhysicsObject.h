@@ -18,7 +18,7 @@ private:
 //    };
 
     //Triangle t;
-    void caluclateAcceleration();
+    void calculateAcceleration();
     float TriangleDegree;
 public:
     PhysicsObject();

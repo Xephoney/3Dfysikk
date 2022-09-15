@@ -106,7 +106,7 @@ glm::vec3 TriangleSurface::triangleNormal(int triangleIndex)
 {
    if(triangleCount == 0 && mIndices.size() == 0)
         return glm::vec3{0.f};
-    if(triangleIndex > triangleCount)
+    if(triangleIndex > triangleCount || triangleIndex == -1)
         return glm::vec3 {0.f};
 
     glm::vec3 vPos[3];
@@ -115,10 +115,9 @@ glm::vec3 TriangleSurface::triangleNormal(int triangleIndex)
         vPos[i] = mVertices[mIndices[triangleIndex * 3 + i]].m_xyz;
     }
     glm::vec3 ba = vPos[1]-vPos[0];
-    qDebug() << "vec_a ("<<ba.x<<","<<ba.y<<","<<ba.z<<")";
     glm::vec3 ca = vPos[2]-vPos[0];
-    qDebug() << "vec_b ("<<ca.x<<","<<ca.y<<","<<ca.z<<")";
     glm::vec3 n = glm::normalize(glm::cross(ca,ba));
+    qDebug() << "Triangle Normal (index"<<triangleIndex<<") = ("<<n.x<<","<<n.y<<","<<n.z<<")";
     return n;
 }
 

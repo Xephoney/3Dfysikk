@@ -10,10 +10,11 @@ float World::distanceToTriangle(glm::vec3 pos, int triangleIndex)
     surface->trianglePositions(triangleIndex, vec);
     glm::vec3 norm = getNormal(triangleIndex);
     qDebug() << "norm plane ("<<norm.x<<","<<norm.y<<","<<norm.z<<")";
-    qDebug() << "pos wrld ("<<pos.x<<","<<pos.y<<","<<pos.z<<")";
     glm::vec3 vector_avgpos_pos = vec[0] - pos;
-    qDebug() << "length of vert to pos = " << glm::dot(vector_avgpos_pos, norm);
+    //qDebug() << "length of vert to pos = " << glm::dot(vector_avgpos_pos, norm);
+
     float dist = abs(glm::dot(vector_avgpos_pos, norm));
+    qDebug() << "dist to surface = " << dist;
     return dist;
 }
 
