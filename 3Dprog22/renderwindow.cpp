@@ -10,6 +10,7 @@
 #include "toolbox.h"
 #include "trianglesurface.h"
 #include "octahedronball.h"
+#include "physicsobject.h"
 #include "camera.h"
 #include "gridplane.h"
 #include "shadercoordinator.h"
@@ -112,12 +113,8 @@ void RenderWindow::createObjects()
     //mMap["Grid"]->Translate(0,2,0);
 
     mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
-//    glm::vec3 n = static_cast<TriangleSurface*>(mMap["Triangles"])->triangleNormal(0);
-//    qDebug() << "Calculated Normal: \n" << "("<<n.x<<", "<<n.y<<", "<<n.z<<")";
-
-    mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new OctahedronBall(3)});
-    mMap["Ball"]->Translate(10,10,7);
-
+    mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new PhysicsObject(3,"plainshader")});
+    mMap["Ball"]->Translate(-7.0,8.0, 7.0);
 }
 
 

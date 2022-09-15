@@ -7,6 +7,8 @@
 #include "visualobject.h"
 #include "quadtree.h"
 #include "texture.h"
+#include "PhysicsObject.h"
+#include "octahedronball.h"
 
 class QOpenGLContext;
 class Shader;

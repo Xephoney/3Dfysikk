@@ -1,0 +1,7 @@
+#include "PhysicsObject"
+
+PhysicsObject::PhysicsObject(QWidget *parent)
+    : QWidget{parent}
+{
+
+}

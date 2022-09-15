@@ -9,7 +9,16 @@
 *.so.*
 *.dylib
 
-# Qt-es
+# Executables
+*.exe
+*.out
+*.app
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Qt
 object_script.*.Release
 object_script.*.Debug
 *_plugin_import.cpp
@@ -19,6 +28,7 @@ object_script.*.Debug
 *.pro.user.*
 *.qbs.user
 *.qbs.user.*
+*.user
 *.moc
 moc_*.cpp
 moc_*.h
@@ -51,3 +61,21 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+#other stuff
+*.mtl
+*.Debug
+*.Release
+
+# MacOS spam
+.DS_Store
+
+#Visual Studio spam
+.vs/*
+debug/*
+release/*
+*_resource.rc
+*.aps
+*.h.cpp
+
+3Dprog22.vcxproj.filters
+.claudiaideconfig
