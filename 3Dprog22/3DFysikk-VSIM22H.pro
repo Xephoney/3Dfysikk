@@ -7,6 +7,7 @@ TARGET      = 3D-programmering
 
 SOURCES += main.cpp \
     Vertex.cpp \
+    WorldCoordinator.cpp \
     bounds.cpp \
     camera.cpp \
     cubemap.cpp \

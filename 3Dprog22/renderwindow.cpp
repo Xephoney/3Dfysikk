@@ -116,7 +116,7 @@ void RenderWindow::createObjects()
 //    qDebug() << "Calculated Normal: \n" << "("<<n.x<<", "<<n.y<<", "<<n.z<<")";
 
     mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new OctahedronBall(3)});
-    mMap["Ball"]->Translate(0,20,0);
+    mMap["Ball"]->Translate(10,10,7);
 
 }
 
@@ -139,7 +139,7 @@ void RenderWindow::render()
 
     //Her gjør vi inputProcessing. Som blant annet ta mus-input og keyboard trykk
     inputProcessing();
-
+    mCamera->tick(deltaTime);
     //Her oppdaterer vi spesifikke shadere for hånd, hovedsaklig for å sette lys og kamera posisjonene.
     updateShaders();
 
@@ -153,7 +153,6 @@ void RenderWindow::render()
     if(GAMESTATE == STATE::EDITOR)
     {
         //Kaller tick (Sånn at spilleren kan fly rundt)
-        mCamera->tick(deltaTime);
         // Tegner debugKameraet, (rosa/lilla kjeglen) for å vise hvor kameraet er i Gameplay staten.
         //Går gjennom alle objektene i hashmappet og tegner dem,
         // to ting her :
@@ -169,6 +168,7 @@ void RenderWindow::render()
     else if (GAMESTATE == STATE::GAMEPLAY)
     {
         //Gjøre et spill-tick for alle i hashmappet (dynamiske objekter)
+
         for(auto& it : mMap)
             it.second->tick(deltaTime);
 
@@ -326,7 +326,7 @@ void RenderWindow::inputProcessing()
         inputDirection *= 0.5;
     }
 
-    if(GAMESTATE == STATE::EDITOR)
+    if(true)
     {
         if(mMouse[Qt::RightButton])
         {

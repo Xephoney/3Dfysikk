@@ -1,6 +1,7 @@
 #include "trianglesurface.h"
 #include <math.h>
 #include <fstream>
+#include "WorldCoordinator.h"
 #include "toolbox.h"
 
 
@@ -60,6 +61,8 @@ void TriangleSurface::readFile(std::string filnavn)
         }
         file.close();
     }
+
+    World::getWorld().surface = this;
 }
 
 void TriangleSurface::init()
@@ -103,18 +106,31 @@ glm::vec3 TriangleSurface::triangleNormal(int triangleIndex)
 {
    if(triangleCount == 0 && mIndices.size() == 0)
         return glm::vec3{0.f};
-    if(triangleIndex * 3 > triangleCount)
+    if(triangleIndex > triangleCount)
         return glm::vec3 {0.f};
 
     glm::vec3 vPos[3];
     for(int i = 0; i < 3; i++)
     {
-        vPos[i] = mVertices[triangleIndex * 3 + i].m_xyz;
+        vPos[i] = mVertices[mIndices[triangleIndex * 3 + i]].m_xyz;
     }
-    glm::vec3 a = vPos[1]-vPos[0];
-    glm::vec3 b = vPos[2]-vPos[0];
-    return glm::normalize(glm::cross(a,b));
+    glm::vec3 ba = vPos[1]-vPos[0];
+    qDebug() << "vec_a ("<<ba.x<<","<<ba.y<<","<<ba.z<<")";
+    glm::vec3 ca = vPos[2]-vPos[0];
+    qDebug() << "vec_b ("<<ca.x<<","<<ca.y<<","<<ca.z<<")";
+    glm::vec3 n = glm::normalize(glm::cross(ca,ba));
+    return n;
+}
 
+void TriangleSurface::trianglePositions(int triangleIndex, std::vector<glm::vec3> &vec)
+{
+    if(triangleIndex<0)
+        return;
+    for(int i = 0; i < 3; i++)
+    {
+        //vec[i] = mVertices[triangleIndex * 3 + i].m_xyz;
+        vec.push_back(mVertices[mIndices[triangleIndex * 3 + i]].m_xyz);
+    }
 }
 
 void TriangleSurface::makeTriangle(const glm::vec3 &a, const glm::vec3 &b, const glm::vec3 &c)

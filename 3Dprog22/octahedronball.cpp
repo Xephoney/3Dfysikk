@@ -1,4 +1,5 @@
 #include "octahedronball.h"
+#include "WorldCoordinator.h"
 #include "toolbox.h"
 
 void OctahedronBall::lagTriangel(const glm::vec3 &v1, const glm::vec3 &v2, const glm::vec3 &v3)
@@ -115,6 +116,30 @@ void OctahedronBall::draw(const glm::mat4& pMat)
 
 void OctahedronBall::tick(const float &dt)
 {
+    World world = World::getWorld();
+    currTriIndex = world.getTriangleIndex(mPosition);
+    glm::vec3 n;
+    if(currTriIndex >= 0)
+    {
+        n = world.getNormal(currTriIndex);
+        qDebug() << "norm octa ("<<n.x<<","<<n.y<<","<<n.z<<")";
+        qDebug() << "pos octa ("<<mPosition.x<<","<<mPosition.y<<","<<mPosition.z<<")";
+        if(world.distanceToTriangle(mPosition, currTriIndex) < 1.f)
+            qDebug() << "!!!!!!!!!!!! Collision !";
+    }
+
+
+    if(currTriIndex != prevTriIndex)
+    {
+        glm::vec3 n1 = world.getNormal(prevTriIndex);
+        glm::vec3 n2 = world.getNormal(currTriIndex);
+        n = glm::normalize(n1 + n2);
+
+        qDebug() << "Ball over transition from index " << prevTriIndex << " to " << currTriIndex;
+    }
     velocity += glm::vec3{0,-9.81,0} * dt;
-    Translate(velocity*dt);
+    mPosition += velocity * dt;
+    //Translate(velocity * dt);
+
+    prevTriIndex = currTriIndex;
 }
