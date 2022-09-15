@@ -28,6 +28,7 @@ void PhysicsObject::draw(const glm::mat4 &pMat)
 void PhysicsObject::tick(const float &dt)
 {
     VisualObject::tick(dt);
+    caluclateAcceleration();
     m_velocity = m_velocity + m_acceleration * dt;
     mPosition = mPosition + m_velocity * dt;
 }
@@ -46,22 +47,26 @@ void PhysicsObject::caluclateAcceleration()
 
     //prosjekter normalvektor på verdens oppvektor
      //g [nx · nz, ny · nz, n2 z − 1]
-    glm::vec3 v12 = t.v1-t.v2;
-    glm::vec3 v13 = t.v1-t.v3;
-    glm::vec3 n = glm::cross(v12,v13);
+    glm::vec3 v12 = t.v2-t.v1;
+    glm::vec3 v13 = t.v3-t.v1;
+    glm::vec3 n = glm::cross(v12,v13); //normal vektoren til planet/vertex'en
 
-    glm::vec3 k;  //Vektor mellom triangle til ballens sendtrum
-    glm::normalize(k);
-    glm::normalize(n);
+    glm::vec3 p = {0,1,0};  //verdens opp vektor
+    n =glm::normalize(n);
+    qDebug() << "normal " << n.x << n.y << n.z;
 
-     float angle =  acos(glm::dot(k,n));
-     glm::vec3 G = glm::vec3(g.x*m_weight  * cos(angle),g.y*m_weight  * cos(angle),g.z*m_weight  * cos(angle));
-     glm::vec3 N = glm::vec3(G.length()*cos(angle) * n.x, G.length()*cos(angle) * n.y, G.length()*cos(angle) * n.z);
+    float angle =  acos(glm::dot(p,n));
+    qDebug() << "angle " << angle;
 
-    float a = m_weight*g.length()*sin(angle); //dette er lengden som akselerasjonen skal ha på dette planet.
+    //Stor G har ingenting med vinkelen å gjøre
+    //glm::vec3 G = glm::vec3(g.x*m_weight  * cos(angle), g.y*m_weight  * cos(angle), g.z*m_weight  * cos(angle));
+    glm::vec3 G  = g;
 
-   m_acceleration = G+n;
+    //glm::vec3 N = glm::vec3(G.length()*cos(angle) * n.x, G.length()*cos(angle) * n.y, G.length()*cos(angle) * n.z);
 
+    //float a = m_weight*g.length()*sin(angle); //dette er lengden som akselerasjonen skal ha på dette planet.
+    //G *= sin(angle);
+    m_acceleration = G+n;
 
 
     //Kjøre på med samme som over, men med G_y og G

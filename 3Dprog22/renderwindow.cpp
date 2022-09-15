@@ -113,7 +113,7 @@ void RenderWindow::createObjects()
 
     mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
     mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new PhysicsObject(3,"plainshader")});
-    mMap["Ball"]->Translate(0,8,0);
+    mMap["Ball"]->Translate(-7.0,8.0, 7.0);
 }
 
 
