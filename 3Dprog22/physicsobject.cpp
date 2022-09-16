@@ -48,8 +48,11 @@ void PhysicsObject::tick(const float &dt)
             //Trekant til trekant
             glm::vec3 n1 = world.getNormal(prevTriIndex);
             glm::vec3 n2 = world.getNormal(currTriIndex);
-            n = glm::normalize(n1 + n2);
-            qDebug() << "Ball over transition from index " << prevTriIndex << " to " << currTriIndex;
+            if(glm::angle(n1,n2) > 3.14f)
+                n={0,0,0};
+            else
+                n = glm::normalize(n1 + n2);
+
             glm::vec3 d = m_velocity;
             m_velocity = d - 2*glm::dot(d, n)*n;
         }
@@ -57,7 +60,7 @@ void PhysicsObject::tick(const float &dt)
         {
             //ingen trekant til trekant
             glm::vec3 d = m_velocity;
-            m_velocity = d - 1.f*glm::dot(d, n)*n;
+            m_velocity = d - glm::dot(d, n)*n;
         }
     }
 
@@ -66,6 +69,14 @@ void PhysicsObject::tick(const float &dt)
     m_velocity += m_acceleration * m_weight* dt;
     mPosition +=  m_velocity * dt;
     prevTriIndex = currTriIndex;
+}
+
+void PhysicsObject::reset()
+{
+    OctahedronBall::reset();
+    m_velocity = glm::vec3{0.f};
+    currTriIndex = -1;
+    prevTriIndex = -1;
 }
 
 void PhysicsObject::calculateAcceleration()

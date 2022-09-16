@@ -143,3 +143,8 @@ void OctahedronBall::tick(const float &dt)
 
     prevTriIndex = currTriIndex;
 }
+
+void OctahedronBall::reset()
+{
+    VisualObject::reset();
+}

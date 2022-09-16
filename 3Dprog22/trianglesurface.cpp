@@ -117,7 +117,6 @@ glm::vec3 TriangleSurface::triangleNormal(int triangleIndex)
     glm::vec3 ba = vPos[1]-vPos[0];
     glm::vec3 ca = vPos[2]-vPos[0];
     glm::vec3 n = glm::normalize(glm::cross(ca,ba));
-    qDebug() << "Triangle Normal (index"<<triangleIndex<<") = ("<<n.x<<","<<n.y<<","<<n.z<<")";
     return n;
 }
 

@@ -248,7 +248,7 @@ void RenderWindow::ResetGame()
     if(GAMESTATE != STATE::EDITOR)
         mCamera->Reset();
 
-    EnterEditor();
+    //EnterEditor();
 
     //reset alle objekter i hashmap.
     for(auto& vo : mMap)

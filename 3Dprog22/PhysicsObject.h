@@ -27,4 +27,5 @@ public:
     void init(GLint matrixUniform) override;
     void draw(const glm::mat4& pMat) override;
     void tick(const float& dt) override;
+    void reset() override;
 };

@@ -16,6 +16,7 @@ public:
     void draw(const glm::mat4& pMat) override ;
     void tick(const float& dt) override;
     void move(float dx, float dy, float dz) override {mPosition = {dx,dy,dz};};
+    virtual void reset() override;
 
     glm::vec3 velocity{0.f,0.f,0.f};
     int currTriIndex{-1};
