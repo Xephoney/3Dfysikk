@@ -29,4 +29,6 @@ private:
     void construct();
     void constructIndices();
     float func(const float x, const float y);
+    float max[3]={-FLT_MAX,-FLT_MAX,-FLT_MAX}; // holder største XYZ verdier i innlest data
+    float min[3]={FLT_MAX,FLT_MAX,FLT_MAX}; // holder minste XYZ verdier i innlest data
 };

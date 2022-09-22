@@ -33,32 +33,34 @@ void TriangleSurface::writeToFile(std::string filNavn)
 
 void TriangleSurface::readFile(std::string filnavn)
 {
+    qDebug()<<"constructor called \n";
     std::ifstream file;
     file.open("../3Dprog22/"+filnavn);
-
     if (file.is_open()) {
-        // Vertexer
-        int n;
 
-        //Indexer
-        int m;
-        Vertex vertex;
-        file >> n;
-        mVertices.reserve(n);
-        for (int i=0; i<n; i++) {
-             file >> vertex;
-             vertex.m_color = vertex.m_normal;
-             mVertices.push_back(vertex);
-        }
-        file >> m;
-        mIndices.reserve(m);
-        triangleCount = m / 3;
-        for(int i = 0; i < m; i++)
+        //lager midlertidig array som skal holde inndata i det den leses
+        float in[3];
+
+        do
         {
-            int index;
-            file >> index;
-            mIndices.push_back(index);
+
+            //Punkt data fra kartverket er satt opp i XZY,
+            //men jeg vil ha det i XYZ, må derfor sette det tredje elementet i fil-linje til andre element i in.
+            file>>in[0]>>in[2]>>in[1];
+
+            //har nå denne linjens punktdata
+            //sjekker om nye data er max eller min i sin akse
+            for(int i=0;i<3;i++){
+                if(in[i]>max[i])
+                    max[i]=in[i];
+                if(in[i]<min[i])
+                    min[i]=in[i];
+            }
         }
+        while(!file.eof());
+
+        qDebug()<<"Yey I could read it!";
+
         file.close();
     }
 

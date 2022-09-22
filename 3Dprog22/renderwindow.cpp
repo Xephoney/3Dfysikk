@@ -98,6 +98,7 @@ void RenderWindow::init()
 
     //Her er kalles funksjonen som lager nesten alle objektene, utenom de vi har gått igjennom ovenfor
     createObjects();
+    //TriangleSurface* kart= new TriangleSurface("kart.txt");
 
     //Vi må derimot kalle init her siden alle her er visualObjects som enda ikke er initialisert.
     //auto her er "std::pair<std::string, VisualObject*>"
@@ -112,7 +113,7 @@ void RenderWindow::createObjects()
     mMap.insert(std::pair<std::string,VisualObject*>{"Grid", new GridPlane(240)});
     //mMap["Grid"]->Translate(0,2,0);
 
-    mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
+    mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("kart.txt")});
     mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new PhysicsObject(3,"plainshader")});
     mMap["Ball"]->Translate(15.0,10.0, 15.0);
 }
