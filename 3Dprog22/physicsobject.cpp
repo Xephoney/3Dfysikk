@@ -48,7 +48,7 @@ void PhysicsObject::tick(const float &dt)
             //Trekant til trekant
             glm::vec3 n1 = world.getNormal(prevTriIndex);
             glm::vec3 n2 = world.getNormal(currTriIndex);
-            if(glm::angle(n1,n2) > 3.14f)
+            if(abs(glm::angle(n1,n2)) > 3.14f)
                 n={0,0,0};
             else
                 n = glm::normalize(n1 + n2);
