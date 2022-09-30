@@ -45,8 +45,13 @@ void TriangleSurface::readFile(std::string filnavn)
         Vertex vertex;
         file >> n;
         mVertices.reserve(n);
-        for (int i=0; i<n; i++) {
-             file >> vertex;
+        for (int i=0; i<n; i++)
+        {
+            float x,y,z;
+            char dum1,dum2,dum3,dum4;
+             file >> dum1 >> x >> dum2 >> y >> dum3 >> z >> dum4 ;
+             vertex.m_xyz = {x,y,z};
+             vertex.m_normal = {y/400.f,y/400.f,y/400.f};
              vertex.m_color = vertex.m_normal;
              mVertices.push_back(vertex);
         }

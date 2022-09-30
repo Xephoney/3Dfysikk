@@ -112,49 +112,29 @@ void RenderWindow::createObjects()
     mMap.insert(std::pair<std::string,VisualObject*>{"Grid", new GridPlane(240)});
     //mMap["Grid"]->Translate(0,2,0);
 
-    mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("bakke.txt")});
+    mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("Fjell2_compressed.txt")});
     mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new PhysicsObject(3,"plainshader")});
     mMap["Ball"]->Translate(15.0,10.0, 15.0);
 }
 
 
-// Called each frame - doing the rendering!!!
 void RenderWindow::render()
 {
-    //Henter tiden mellom nå og forrige frame og lagrer den til senere
-    //  "Denne tar jeg vare på :)" - Askeladden
     deltaTime = calculateFramerate();
 
     mContext->makeCurrent(this); //must be called every frame (every time mContext->swapBuffers is called)
 
     initializeOpenGLFunctions();    //must call this every frame it seems...
 
-    //Oppdaterer kameraet (Sender kamera-matrisene videre
-    //   til shaderCoordinatoren som oppdaterer alle lastede shadere).
     mCamera->update();
     mCubemap->draw(mCamera->mPmatrix, mCamera->mVmatrix);
 
-    //Her gjør vi inputProcessing. Som blant annet ta mus-input og keyboard trykk
     inputProcessing();
     mCamera->tick(deltaTime);
-    //Her oppdaterer vi spesifikke shadere for hånd, hovedsaklig for å sette lys og kamera posisjonene.
     updateShaders();
 
-    //Nedenfor har vi de tre spillstadiene. Editor, Gameplay og Result.
-    // Selv om det er mye copy-paste mellom dem, så er det nødvendig ettersom det er ingen god løsning
-    //    å få isolert kun noen funksjon-kall uavhengig av gamestate.
-
-    //Oppgave 13
-    // når GAMESTATE er i editor modus så blir aldri "tick" kalt,
-    // derfor står alt stille.
     if(GAMESTATE == STATE::EDITOR)
     {
-        //Kaller tick (Sånn at spilleren kan fly rundt)
-        // Tegner debugKameraet, (rosa/lilla kjeglen) for å vise hvor kameraet er i Gameplay staten.
-        //Går gjennom alle objektene i hashmappet og tegner dem,
-        // to ting her :
-        //   1. setter DebugDisplay til true,
-        //   2. Sender inn en 4x4 matrise som fungerer som "world-space";
         for(auto& it : mMap)
         {
             it.second->ToggleDebugDisplay(true);
@@ -164,15 +144,9 @@ void RenderWindow::render()
     }
     else if (GAMESTATE == STATE::GAMEPLAY)
     {
-        //Gjøre et spill-tick for alle i hashmappet (dynamiske objekter)
-
         for(auto& it : mMap)
             it.second->tick(deltaTime);
 
-        //Sjekker kollisjon
-//        checkCollision();
-
-        //Tegne objektene i Hash-map
         for(auto& it : mMap)
         {
             it.second->ToggleDebugDisplay(true);
@@ -195,34 +169,24 @@ void RenderWindow::render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-//This function is called from Qt when window is exposed (shown)
-// and when it is resized
-//exposeEvent is a overridden function from QWindow that we inherit from
 void RenderWindow::exposeEvent(QExposeEvent *)
 {
     if (!mInitialized)
         init();
 
-    //This is just to support modern screens with "double" pixels (Macs and some 4k Windows laptops)
     const qreal retinaScale = devicePixelRatio();
 
-    //Set viewport width and height to the size of the QWindow we have set up for OpenGL
     glViewport(0, 0, static_cast<GLint>(width() * retinaScale), static_cast<GLint>(height() * retinaScale));
 
     if(height() > 0.5)
         mCamera->cameraResize(FOV,(width()*retinaScale)/(height()*retinaScale),0.01,1000.0);
 
-    //If the window actually is exposed to the screen we start the main loop
-    //isExposed() is a function in QWindow
     if (isExposed())
     {
-        //This timer runs the actual MainLoop == the render()-function
-        //2 means 2ms = 500 Frames pr second (not that it actually runs at 500 fps :X)
         mRenderTimer->start(2);
     }
 }
 
-//Starter spillet. Denne blir kalt fra Qt GUI
 void RenderWindow::StartGame()
 {
     if(GAMESTATE != STATE::GAMEPLAY)
@@ -231,7 +195,6 @@ void RenderWindow::StartGame()
     }
 }
 
-//Går inn i Editoren. Denne blir kalt fra Qt GUI og fra Reset()
 void RenderWindow::EnterEditor()
 {
     if(GAMESTATE != STATE::EDITOR)
@@ -242,15 +205,10 @@ void RenderWindow::EnterEditor()
 
 void RenderWindow::ResetGame()
 {
-    // Sette alle myntene og mynteverdiene tilbake.
-
-    //Denne er her  så du kan se alle objektene resettes uten at kameraet går tilbake til sin "resatte" posisjon
     if(GAMESTATE != STATE::EDITOR)
         mCamera->Reset();
 
     //EnterEditor();
-
-    //reset alle objekter i hashmap.
     for(auto& vo : mMap)
     {
         vo.second->reset();
@@ -276,31 +234,24 @@ void RenderWindow::inputProcessing()
     glm::vec3 right = mCamera->right();
     glm::vec3 upward = mCamera->up();
 
-    float movementInput = 0;
-    float rotationInput = 0;
-
     if(mKeyboard[Qt::Key_A])
     {
         inputDirection -= right;
-        rotationInput += 1;
     }
 
     if(mKeyboard[Qt::Key_S])
     {
         inputDirection -= forward;
-        movementInput -= 1;
     }
 
     if(mKeyboard [Qt::Key_W])
     {
         inputDirection += forward;
-        movementInput += 1;
     }
 
     if(mKeyboard [Qt::Key_D])
     {
         inputDirection += right;
-        rotationInput -= 1;
     }
 
     if(mKeyboard [Qt::Key_E])
@@ -315,8 +266,6 @@ void RenderWindow::inputProcessing()
     if(mKeyboard [Qt::Key_Shift])
     {
         inputDirection *= 2;
-        movementInput *= 2;
-        rotationInput *= 0.25;
     }
     if(mKeyboard [Qt::Key_Control])
     {
@@ -351,37 +300,20 @@ void RenderWindow::inputProcessing()
 
 void RenderWindow::checkCollision()
 {
-    // Gir alle et physics-tick
     for(auto& obj : mMap)
     {
-        // Teste distansen mellom punktet fra barysentriske til ballen er mindre enn radiusen til ballen
-
-        // dir = bCoord - obj.position
-        // glm::length(dir) <= obj.radius
-
-        {
-            //
-        }
 
     }
 }
 
 void RenderWindow::updateShaders()
 {
-    //Dobbeltsjekker at lyset(NPC) er satt inn i scenen før jeg sender det til shaderen.
-
-    //Sender inn kamera posisjonen. Denne trenger ikke en sjekk fordi det skal alltid være et kamera til stedet! ;)
     ShaderCoordinator::getInstance().updateShaderUniformVec3("blinn_phongshader", "cameraPosition", mCamera->getViewPosition());
     ShaderCoordinator::getInstance().updateShaderUniformVec3("blinn_phongtextureshader", "cameraPosition", mCamera->getViewPosition());
 }
 
-//The way this function is set up is that we start the clock before doing the draw call,
-// and check the time right after it is finished (done in the render function)
-//This will approximate what framerate we COULD have.
-//The actual frame rate on your monitor is limited by the vsync and is probably 60Hz
 double RenderWindow::calculateFramerate()
 {
-    //static int64_t elapsedTime;
     static double elapsedTime{0};
     //Brukt Sten Rune sin kode som utgangspunkt, endret noen små greier for å tilpasse min applikasjon
     static auto lastFrame = std::chrono::high_resolution_clock::now();
@@ -391,42 +323,33 @@ double RenderWindow::calculateFramerate()
     const auto deltaTimeS = deltaTimeMs/1000.0;
 
     elapsedTime += deltaTimeS;
-    //    elapsedTime+=nsecElapsed/1000000.f;
-    static int frameCount{0};                       //counting actual frames for a quick "timer" for the statusbar
+    static int frameCount{0};
 
     static long AVGframerate;
-    if (mMainWindow)            //if no mainWindow, something is really wrong...
+    if (mMainWindow)
     {
         ++frameCount;
-        if (frameCount > 30)    //once pr 30 frames = update the message == twice pr second (on a 60Hz monitor)
+        if (frameCount > 30)
         {
             AVGframerate = 1E3 / deltaTimeMs;
-            frameCount = 0;     //reset to show a new message in 30 frames
+            frameCount = 0;
         }
-        //showing some statistics in status bar
         mMainWindow->statusBar()->showMessage(" Time pr FrameDraw: " + QString::number(deltaTimeMs, 'g', 4) + " ms "    //Draw cycle (limited by mRenderTimer at 2ms)
                                               "| Runtime: " + QString::number((int)elapsedTime) + " sec " +             //Elapsed Time
                                               "| FPS (approximated): " + QString::number(AVGframerate, 'g', 7));        //Framerate calculation
     }
     lastFrame = thisFrame;
-
-    // Deltatime in seconds
     return deltaTimeS;
 }
 
-//Uses QOpenGLDebugLogger if this is present
-//Reverts to glGetError() if not
 void RenderWindow::checkForGLerrors()
 {
-    if(mOpenGLDebugLogger)  //if our machine got this class to work
+    if(mOpenGLDebugLogger)
     {
         const QList<QOpenGLDebugMessage> messages = mOpenGLDebugLogger->loggedMessages();
         for (const QOpenGLDebugMessage &message : messages)
         {
-            if (!(message.type() == message.OtherType)) // get rid of uninteresting "object ...
-                // will use VIDEO memory as the source for
-                // buffer object operations"
-                // valid error message:
+            if (!(message.type() == message.OtherType))
             {
                 if(message.PerformanceType)
                     qDebug() << message.message().toStdString().c_str();
@@ -461,8 +384,6 @@ void RenderWindow::checkForGLerrors()
     }
 }
 
-//Tries to start the extended OpenGL debugger that comes with Qt
-//Usually works on Windows machines, but not on Mac...
 void RenderWindow::startOpenGLDebugger()
 {
     QOpenGLContext * temp = this->context();
@@ -483,7 +404,6 @@ void RenderWindow::startOpenGLDebugger()
     }
 }
 
-//Disse to funksjonene, Wireframe og Shaded blir kalt fra QT GUI-en.
 void RenderWindow::Wireframe()
 {
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -493,38 +413,30 @@ void RenderWindow::Shaded()
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-//Event sent from Qt when program receives a keyPress
-// NB - see renderwindow.h for signatures on keyRelease and mouse input
 void RenderWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Escape)
     {
-        mMainWindow->close();       //Shuts down the whole program
+        mMainWindow->close();
         return;
     }
-
-    //Her setter jeg key en(Qt::key) inn i et hashmap med en boolean som verdi
     mKeyboard[event->key()] = true;
     QWindow::keyPressEvent(event);
 
 }
 void RenderWindow::keyReleaseEvent(QKeyEvent *event)
 {
-    //Når tasten slippes setter jeg verdien i hashmappen til false.
     mKeyboard[event->key()] = false;
     QWindow::keyReleaseEvent(event);
 }
 
 void RenderWindow::mousePressEvent(QMouseEvent *event)
 {
-    // Samme gjør jeg her og i funksjonen under med mus knappene.
     mMouse[event->button()] = true;
     QWindow::mousePressEvent(event);
 }
 void RenderWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-    // bFirstClick blir brukt til i inputProcessing for å
-    //  stoppe kameraet fra å "skippe" når man trykker gjentatte ganger.
     if(event->button() == Qt::RightButton)
         bFirstClick = true;
     mMouse[event->button()] = false;

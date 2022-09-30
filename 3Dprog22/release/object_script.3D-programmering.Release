@@ -1,5 +1,6 @@
 release/main.o
 release/Vertex.o
+release/WorldCoordinator.o
 release/bounds.o
 release/camera.o
 release/cubemap.o
@@ -8,6 +9,7 @@ release/logger.o
 release/mainwindow.o
 release/mesh.o
 release/octahedronball.o
+release/physicsobject.o
 release/quadtree.o
 release/renderwindow.o
 release/shader.o

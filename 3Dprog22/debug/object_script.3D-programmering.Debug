@@ -1,5 +1,6 @@
 debug/main.o
 debug/Vertex.o
+debug/WorldCoordinator.o
 debug/bounds.o
 debug/camera.o
 debug/cubemap.o
@@ -8,6 +9,7 @@ debug/logger.o
 debug/mainwindow.o
 debug/mesh.o
 debug/octahedronball.o
+debug/physicsobject.o
 debug/quadtree.o
 debug/renderwindow.o
 debug/shader.o
