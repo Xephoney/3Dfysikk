@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'renderwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.3.0)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.3.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -13,7 +13,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'renderwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.3.0. It"
+#error "This file was generated using the moc from 6.3.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,19 +22,22 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_RenderWindow_t {
-    const uint offsetsAndSize[6];
-    char stringdata0[21];
+    uint offsetsAndSizes[6];
+    char stringdata0[13];
+    char stringdata1[7];
+    char stringdata2[1];
 };
 #define QT_MOC_LITERAL(ofs, len) \
-    uint(offsetof(qt_meta_stringdata_RenderWindow_t, stringdata0) + ofs), len 
+    uint(sizeof(qt_meta_stringdata_RenderWindow_t::offsetsAndSizes) + ofs), len 
 static const qt_meta_stringdata_RenderWindow_t qt_meta_stringdata_RenderWindow = {
     {
-QT_MOC_LITERAL(0, 12), // "RenderWindow"
-QT_MOC_LITERAL(13, 6), // "render"
-QT_MOC_LITERAL(20, 0) // ""
-
+        QT_MOC_LITERAL(0, 12),  // "RenderWindow"
+        QT_MOC_LITERAL(13, 6),  // "render"
+        QT_MOC_LITERAL(20, 0)   // ""
     },
-    "RenderWindow\0render\0"
+    "RenderWindow",
+    "render",
+    ""
 };
 #undef QT_MOC_LITERAL
 
@@ -75,7 +78,7 @@ void RenderWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
 
 const QMetaObject RenderWindow::staticMetaObject = { {
     QMetaObject::SuperData::link<QWindow::staticMetaObject>(),
-    qt_meta_stringdata_RenderWindow.offsetsAndSize,
+    qt_meta_stringdata_RenderWindow.offsetsAndSizes,
     qt_meta_data_RenderWindow,
     qt_static_metacall,
     nullptr,

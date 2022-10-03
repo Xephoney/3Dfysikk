@@ -12,7 +12,8 @@ TriangleSurface::TriangleSurface() : VisualObject("plainshader")
 
 TriangleSurface::TriangleSurface(std::string filnavn) : VisualObject("plainshader")
 {
-    readFile(filnavn);
+    //readFile(filnavn);
+    readCompressed(filnavn);
 }
 
 TriangleSurface::~TriangleSurface() { }
@@ -40,6 +41,9 @@ void TriangleSurface::readFile(std::string filnavn)
 
         //lager midlertidig array som skal holde inndata i det den leses
         float in[3];
+        Vertex tempVert;
+        Vertex lastVert;
+        int linesRead=0;
 
         do
         {
@@ -48,22 +52,136 @@ void TriangleSurface::readFile(std::string filnavn)
             //men jeg vil ha det i XYZ, må derfor sette det tredje elementet i fil-linje til andre element i in.
             file>>in[0]>>in[2]>>in[1];
 
-            //har nå denne linjens punktdata
-            //sjekker om nye data er max eller min i sin akse
-            for(int i=0;i<3;i++){
-                if(in[i]>max[i])
-                    max[i]=in[i];
-                if(in[i]<min[i])
-                    min[i]=in[i];
+            tempVert=Vertex(in[0],in[1],in[2]);
+
+            if(mVertices.size()<1){
+                //har nå denne linjens punktdata
+                //sjekker om nye data er max eller min i sin akse
+                for(int i=0;i<3;i++){
+                    if(in[i]>max[i])
+                        max[i]=in[i];
+                    if(in[i]<min[i])
+                        min[i]=in[i];
+                }
+                tempVert.m_color=tempVert.m_normal;
+                mVertices.push_back(tempVert);
+                linesRead=linesRead+1;
+                lastVert=tempVert;
             }
+
+            else{
+                if(!tooClose(tempVert, lastVert)){
+                    for(int i=0;i<3;i++){
+                        if(in[i]>max[i])
+                            max[i]=in[i];
+                        if(in[i]<min[i])
+                            min[i]=in[i];
+                    }
+                    tempVert.m_color=tempVert.m_normal;
+                    mVertices.push_back(tempVert);
+                    linesRead=linesRead+1;
+                    lastVert=tempVert;
+                }
+            }
+
         }
         while(!file.eof());
 
-        qDebug()<<"Yey I could read it!";
+        qDebug()<<"lines read : "<< linesRead;
+
+
+
+        for(auto i=0;i<mVertices.size();i++){
+            mVertices[i].m_xyz.x=mVertices[i].m_xyz.x-min[0];
+            mVertices[i].m_xyz.y=mVertices[i].m_xyz.y-min[1];
+            mVertices[i].m_xyz.z=mVertices[i].m_xyz.z-min[2];
+        }
+        max[0]=max[0]-min[0];
+        max[1]=max[1]-min[1];
+        max[2]=max[2]-min[2];
+
+        min[0]=min[0]-min[0];
+        min[1]=min[1]-min[1];
+        min[2]=min[2]-min[2];
 
         file.close();
     }
 
+    std::pair<float,int> grid[(int)max[0]][(int)max[2]];
+
+    // finne hvilke punkter i gridet alle vertexer er i
+    for(auto i=0;i<mVertices.size();i++){
+        int x=mVertices[i].m_xyz.x;
+        int z=mVertices[i].m_xyz.z;
+        grid[x][z].first+=mVertices[i].m_xyz.y;
+        grid[x][z].second+=1;
+
+    }
+
+    mVertices.clear();//vårrengjøring
+
+    //finne average høyde i hver grid point
+    for(auto i=0;i<(int)max[0];i++){
+        for(auto j=0;j<(int)max[2];j++){
+            if(grid[i][j].second!=0)
+                grid[i][j].first=grid[i][j].first/(float)grid[i][j].second;
+            mVertices.push_back(Vertex(i,grid[i][j].first,j));
+        }
+    }
+
+    //indeksering (med hjelp fra Hans Ola <3)
+    for(auto i=0;i<(int)max[2]-1;i++){
+        for(auto j=0;j<(int)max[0]-1;j++){
+            int index = i*(int)max[0]+j;
+            mIndices.push_back(index);
+            mIndices.push_back(index+1);
+            mIndices.push_back(index+1+(int)max[0]);
+            mIndices.push_back(index);
+            mIndices.push_back(index+1+(int)max[0]);
+            mIndices.push_back(index+(int)max[0]);
+     }
+    }
+
+
+
+// ut glm::vec3 grid[(int)max[0]][(int)max[2]];
+
+    World::getWorld().surface = this;
+}
+
+void TriangleSurface::readCompressed(std::string filnavn) //brukes for å lese komprimert og optimalisert fil
+{
+    qDebug()<<"compressed constructor called \n";
+    std::ifstream file;
+    file.open("../3Dprog22/"+filnavn);
+    if(file.is_open()){
+        Vertex tempVert;
+        int vertInt;
+        int indexInt;
+        std::string inText;
+        file>>vertInt;
+        mVertices.reserve(vertInt);
+
+        for(int i=0;i<vertInt;i++){
+            float x,y,z;
+            char d1,d2,d3,d4;
+            file>>d1>>x>>d2>>y>>d3>>z>>d4;
+            tempVert.m_xyz={x,y,z};
+            tempVert.m_normal ={x/100.f,y/100.f,x/100.f};
+            tempVert.m_color=tempVert.m_normal;
+            mVertices.push_back(tempVert);
+        }
+        file>>indexInt;
+        mIndices.reserve(indexInt);
+        triangleCount=indexInt/3;
+        for(int i=0;i<indexInt;i++){
+            int index;
+            file>>index;
+            mIndices.push_back(index);
+        }
+        if(file.eof())
+            file.close();
+    }
     World::getWorld().surface = this;
 }
 
@@ -88,6 +206,9 @@ void TriangleSurface::init()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_normal) );
     glEnableVertexAttribArray(1);
 
+    // 4th attribute buffer : color
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, m_color) );
+    glEnableVertexAttribArray(3);
 
     //Index buffer binding so that its easier to create objects without duplicate vertices.
     glGenBuffers( 1, &mIBO );
@@ -151,6 +272,15 @@ void TriangleSurface::makeTriangle(const glm::vec3 &a, const glm::vec3 &b, const
     mIndices.push_back((int)mIndices.size());
     mIndices.push_back((int)mIndices.size());
     mIndices.push_back((int)mIndices.size());
+}
+
+bool TriangleSurface::tooClose(Vertex a, Vertex b)      // Sjekk om gitte vertexer er for nærme
+{
+    Vertex temp;
+    if(abs(glm::distance2(a.m_xyz,b.m_xyz))<minDist)
+        return true;
+    else return false;
+
 }
 
 void TriangleSurface::makeTriangle(const int &indx0, const int &indx1, const int &indx2)
