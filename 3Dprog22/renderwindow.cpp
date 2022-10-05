@@ -114,8 +114,12 @@ void RenderWindow::createObjects()
     //mMap["Grid"]->Translate(0,2,0);
 
     mMap.insert(std::pair<std::string,VisualObject*>{"Triangles", new TriangleSurface("compressed.txt")});
-    mMap.insert(std::pair<std::string,VisualObject*>{"Ball", new PhysicsObject(3,"plainshader")});
-    mMap["Ball"]->Translate(80.0,80.0, 80.0);
+    int rainToSpawn=5;
+    for(int i=0;i<rainToSpawn;i++){
+        mMap.insert(std::pair<std::string,VisualObject*>{std::to_string(i), new PhysicsObject(1,"plainshader")});
+        mMap[std::to_string(i)]->Translate(80.f+5*i,40.f, 80.f);
+    }
+
 }
 
 

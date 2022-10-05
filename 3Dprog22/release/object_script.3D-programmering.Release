@@ -5,6 +5,7 @@ release/bounds.o
 release/camera.o
 release/cubemap.o
 release/gridplane.o
+release/kurve.o
 release/logger.o
 release/mainwindow.o
 release/mesh.o

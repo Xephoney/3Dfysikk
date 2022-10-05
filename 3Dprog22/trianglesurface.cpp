@@ -44,14 +44,11 @@ void TriangleSurface::readFile(std::string filnavn)
         Vertex tempVert;
         Vertex lastVert;
         int linesRead=0;
-
         do
         {
-
             //Punkt data fra kartverket er satt opp i XZY,
             //men jeg vil ha det i XYZ, må derfor sette det tredje elementet i fil-linje til andre element i in.
             file>>in[0]>>in[2]>>in[1];
-
             tempVert=Vertex(in[0],in[1],in[2]);
 
             if(mVertices.size()<1){
@@ -90,12 +87,14 @@ void TriangleSurface::readFile(std::string filnavn)
         qDebug()<<"lines read : "<< linesRead;
 
 
-
+        // flytter modellen til world origin {0,0,0}
         for(auto i=0;i<mVertices.size();i++){
             mVertices[i].m_xyz.x=mVertices[i].m_xyz.x-min[0];
             mVertices[i].m_xyz.y=mVertices[i].m_xyz.y-min[1];
             mVertices[i].m_xyz.z=mVertices[i].m_xyz.z-min[2];
         }
+
+        // setter max og min til å stemme med de nye posisjonene
         max[0]=max[0]-min[0];
         max[1]=max[1]-min[1];
         max[2]=max[2]-min[2];
@@ -129,7 +128,7 @@ void TriangleSurface::readFile(std::string filnavn)
         }
     }
 
-    //indeksering (med hjelp fra Hans Ola <3)
+    //indeksering (med hjelp fra Hans Ola Hoftun)
     for(auto i=0;i<(int)max[2]-1;i++){
         for(auto j=0;j<(int)max[0]-1;j++){
             int index = i*(int)max[0]+j;

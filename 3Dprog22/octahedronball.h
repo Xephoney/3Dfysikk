@@ -21,4 +21,5 @@ public:
     glm::vec3 velocity{0.f,0.f,0.f};
     int currTriIndex{-1};
     int prevTriIndex{-1};
+
 };

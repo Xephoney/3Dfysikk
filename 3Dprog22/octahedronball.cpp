@@ -126,6 +126,7 @@ void OctahedronBall::tick(const float &dt)
         qDebug() << "pos octa ("<<mPosition.x<<","<<mPosition.y<<","<<mPosition.z<<")";
         if(world.distanceToTriangle(mPosition, currTriIndex) < 1.f)
             qDebug() << "!!!!!!!!!!!! Collision !";
+
     }
 
 
@@ -142,6 +143,7 @@ void OctahedronBall::tick(const float &dt)
     //Translate(velocity * dt);
 
     prevTriIndex = currTriIndex;
+
 }
 
 void OctahedronBall::reset()

@@ -12,6 +12,7 @@ SOURCES += main.cpp \
     camera.cpp \
     cubemap.cpp \
     gridplane.cpp \
+    kurve.cpp \
     logger.cpp \
     mainwindow.cpp \
     mesh.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     camera.h \
     cubemap.h \
     gridplane.h \
+    kurve.h \
     logger.h \
     mainwindow.h \
     mesh.h \

@@ -57,6 +57,7 @@ SOURCES       = main.cpp \
 		camera.cpp \
 		cubemap.cpp \
 		gridplane.cpp \
+		kurve.cpp \
 		logger.cpp \
 		mainwindow.cpp \
 		mesh.cpp \
@@ -78,6 +79,7 @@ OBJECTS       = debug/main.o \
 		debug/camera.o \
 		debug/cubemap.o \
 		debug/gridplane.o \
+		debug/kurve.o \
 		debug/logger.o \
 		debug/mainwindow.o \
 		debug/mesh.o \
@@ -115,6 +117,7 @@ DIST          = phongshader.frag \
 		camera.h \
 		cubemap.h \
 		gridplane.h \
+		kurve.h \
 		logger.h \
 		mainwindow.h \
 		mesh.h \
@@ -136,6 +139,7 @@ DIST          = phongshader.frag \
 		camera.cpp \
 		cubemap.cpp \
 		gridplane.cpp \
+		kurve.cpp \
 		logger.cpp \
 		mainwindow.cpp \
 		mesh.cpp \
@@ -168,10 +172,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) 3D-programmering.zip $(SOURCES) $(DIST) 3DFysikk-VSIM22H.pro C:\Qt\6.3.2\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.3.2\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.3.2\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.3.2\mingw_64\mkspecs\qconfig.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmllint_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.3.2\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.3.2\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.3.2\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\entrypoint.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qt.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\resources.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\moc.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\uic.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\windows.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\lex.prf 3DFysikk-VSIM22H.pro C:\Qt\6.3.2\mingw_64\lib\Qt6Widgets.prl C:\Qt\6.3.2\mingw_64\lib\Qt6OpenGL.prl C:\Qt\6.3.2\mingw_64\lib\Qt6Gui.prl C:\Qt\6.3.2\mingw_64\lib\Qt6Core.prl C:\Qt\6.3.2\mingw_64\lib\Qt6EntryPoint.prl    C:\Qt\6.3.2\mingw_64\mkspecs\features\data\dummy.cpp Vertex.h WorldCoordinator.h bounds.h camera.h cubemap.h gridplane.h logger.h mainwindow.h mesh.h octahedronball.h physicsobject.h quadtree.h renderwindow.h shader.h shadercoordinator.h src\vendor\stb_image\stb_image.h texture.h toolbox.h trianglesurface.h visuallineobject.h visualobject.h  main.cpp Vertex.cpp WorldCoordinator.cpp bounds.cpp camera.cpp cubemap.cpp gridplane.cpp logger.cpp mainwindow.cpp mesh.cpp octahedronball.cpp physicsobject.cpp quadtree.cpp renderwindow.cpp shader.cpp src\vendor\stb_image\stb_image.cpp texture.cpp trianglesurface.cpp visuallineobject.cpp visualobject.cpp mainwindow.ui    
+	$(ZIP) 3D-programmering.zip $(SOURCES) $(DIST) 3DFysikk-VSIM22H.pro C:\Qt\6.3.2\mingw_64\mkspecs\features\spec_pre.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\device_config.prf C:\Qt\6.3.2\mingw_64\mkspecs\common\sanitize.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\gcc-base.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\g++-base.conf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\Qt\6.3.2\mingw_64\mkspecs\common\windows-vulkan.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\g++-win32.conf C:\Qt\6.3.2\mingw_64\mkspecs\common\windows-desktop.conf C:\Qt\6.3.2\mingw_64\mkspecs\qconfig.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_ext_freetype.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_ext_libpng.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_core.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_help.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssettings.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_linguist.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_network.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_png_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmllint_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_tools_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\6.3.2\mingw_64\mkspecs\features\qt_functions.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qt_config.prf C:\Qt\6.3.2\mingw_64\mkspecs\win32-g++\qmake.conf C:\Qt\6.3.2\mingw_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\6.3.2\mingw_64\mkspecs\features\exclusive_builds.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\toolchain.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\default_pre.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\default_pre.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\resolve_config.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\default_post.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\build_pass.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qml_debug.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\entrypoint.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\precompile_header.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\warn_on.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qt.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\resources_functions.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\resources.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\moc.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\opengl.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\uic.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\qmake_use.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\file_copies.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\win32\windows.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\testcase_targets.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\exceptions.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\yacc.prf C:\Qt\6.3.2\mingw_64\mkspecs\features\lex.prf 3DFysikk-VSIM22H.pro C:\Qt\6.3.2\mingw_64\lib\Qt6Widgets.prl C:\Qt\6.3.2\mingw_64\lib\Qt6OpenGL.prl C:\Qt\6.3.2\mingw_64\lib\Qt6Gui.prl C:\Qt\6.3.2\mingw_64\lib\Qt6Core.prl C:\Qt\6.3.2\mingw_64\lib\Qt6EntryPoint.prl    C:\Qt\6.3.2\mingw_64\mkspecs\features\data\dummy.cpp Vertex.h WorldCoordinator.h bounds.h camera.h cubemap.h gridplane.h kurve.h logger.h mainwindow.h mesh.h octahedronball.h physicsobject.h quadtree.h renderwindow.h shader.h shadercoordinator.h src\vendor\stb_image\stb_image.h texture.h toolbox.h trianglesurface.h visuallineobject.h visualobject.h  main.cpp Vertex.cpp WorldCoordinator.cpp bounds.cpp camera.cpp cubemap.cpp gridplane.cpp kurve.cpp logger.cpp mainwindow.cpp mesh.cpp octahedronball.cpp physicsobject.cpp quadtree.cpp renderwindow.cpp shader.cpp src\vendor\stb_image\stb_image.cpp texture.cpp trianglesurface.cpp visuallineobject.cpp visualobject.cpp mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\Vertex.o debug\WorldCoordinator.o debug\bounds.o debug\camera.o debug\cubemap.o debug\gridplane.o debug\logger.o debug\mainwindow.o debug\mesh.o debug\octahedronball.o debug\physicsobject.o debug\quadtree.o debug\renderwindow.o debug\shader.o debug\stb_image.o debug\texture.o debug\trianglesurface.o debug\visuallineobject.o debug\visualobject.o debug\moc_mainwindow.o debug\moc_renderwindow.o
+	-$(DEL_FILE) debug\main.o debug\Vertex.o debug\WorldCoordinator.o debug\bounds.o debug\camera.o debug\cubemap.o debug\gridplane.o debug\kurve.o debug\logger.o debug\mainwindow.o debug\mesh.o debug\octahedronball.o debug\physicsobject.o debug\quadtree.o debug\renderwindow.o debug\shader.o debug\stb_image.o debug\texture.o debug\trianglesurface.o debug\visuallineobject.o debug\visualobject.o debug\moc_mainwindow.o debug\moc_renderwindow.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -733,6 +737,8 @@ debug/moc_renderwindow.cpp: renderwindow.h \
 		toolbox.h \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/qrandom.h \
+		kurve.h \
+		visuallineobject.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.3.2/mingw_64/bin/moc.exe
 	C:\Qt\6.3.2\mingw_64\bin\moc.exe $(DEFINES) --include "D:/Skole/Visualisering og simulering/Obliger/oblig3/3Dfysikk/3Dprog22/debug/moc_predefs.h" -IC:/Qt/6.3.2/mingw_64/mkspecs/win32-g++ -I"D:/Skole/Visualisering og simulering/Obliger/oblig3/3Dfysikk/3Dprog22" -I"D:/Skole/Visualisering og simulering/Obliger/oblig3/3Dfysikk/3Dprog22/assimp/include" -IC:/Qt/6.3.2/mingw_64/include -IC:/Qt/6.3.2/mingw_64/include/QtWidgets -IC:/Qt/6.3.2/mingw_64/include/QtOpenGL -IC:/Qt/6.3.2/mingw_64/include/QtGui -IC:/Qt/6.3.2/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include renderwindow.h -o debug\moc_renderwindow.cpp
@@ -2668,6 +2674,365 @@ debug/gridplane.o: gridplane.cpp gridplane.h \
 		bounds.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\gridplane.o gridplane.cpp
 
+debug/kurve.o: kurve.cpp kurve.h \
+		visuallineobject.h \
+		visualobject.h \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/QOpenGLFunctions_4_1_Core \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/qopenglfunctions_4_1_core.h \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/qtopenglglobal.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qtgui-config.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qtguiexports.h \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/qtopenglexports.h \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/QOpenGLVersionProfile \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/qopenglversionprofile.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/QSurfaceFormat \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qsurfaceformat.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/QPair \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/QOpenGLVersionFunctions \
+		C:/Qt/6.3.2/mingw_64/include/QtOpenGL/qopenglversionfunctions.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qopengl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qt_windows.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qopengles2ext.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qopenglext.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qopenglcontext.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/QObject \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/QScopedPointer \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.3.2/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qopenglcontext_platform.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/6.3.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+		Vertex.h \
+		glm/glm.hpp \
+		glm/detail/_fixes.hpp \
+		glm/detail/setup.hpp \
+		glm/simd/platform.h \
+		glm/simd/neon.h \
+		glm/fwd.hpp \
+		glm/detail/qualifier.hpp \
+		glm/vec2.hpp \
+		glm/ext/vector_bool2.hpp \
+		glm/detail/type_vec2.hpp \
+		glm/detail/_swizzle.hpp \
+		glm/detail/_swizzle_func.hpp \
+		glm/detail/type_vec2.inl \
+		glm/detail/compute_vector_relational.hpp \
+		glm/ext/vector_bool2_precision.hpp \
+		glm/ext/vector_float2.hpp \
+		glm/ext/vector_float2_precision.hpp \
+		glm/ext/vector_double2.hpp \
+		glm/ext/vector_double2_precision.hpp \
+		glm/ext/vector_int2.hpp \
+		glm/ext/vector_int2_sized.hpp \
+		glm/ext/scalar_int_sized.hpp \
+		glm/ext/vector_uint2.hpp \
+		glm/ext/vector_uint2_sized.hpp \
+		glm/ext/scalar_uint_sized.hpp \
+		glm/vec3.hpp \
+		glm/ext/vector_bool3.hpp \
+		glm/detail/type_vec3.hpp \
+		glm/detail/type_vec3.inl \
+		glm/ext/vector_bool3_precision.hpp \
+		glm/ext/vector_float3.hpp \
+		glm/ext/vector_float3_precision.hpp \
+		glm/ext/vector_double3.hpp \
+		glm/ext/vector_double3_precision.hpp \
+		glm/ext/vector_int3.hpp \
+		glm/ext/vector_int3_sized.hpp \
+		glm/ext/vector_uint3.hpp \
+		glm/ext/vector_uint3_sized.hpp \
+		glm/vec4.hpp \
+		glm/ext/vector_bool4.hpp \
+		glm/detail/type_vec4.hpp \
+		glm/detail/type_vec4.inl \
+		glm/detail/type_vec4_simd.inl \
+		glm/ext/vector_bool4_precision.hpp \
+		glm/ext/vector_float4.hpp \
+		glm/ext/vector_float4_precision.hpp \
+		glm/ext/vector_double4.hpp \
+		glm/ext/vector_double4_precision.hpp \
+		glm/ext/vector_int4.hpp \
+		glm/ext/vector_int4_sized.hpp \
+		glm/ext/vector_uint4.hpp \
+		glm/ext/vector_uint4_sized.hpp \
+		glm/mat2x2.hpp \
+		glm/ext/matrix_double2x2.hpp \
+		glm/detail/type_mat2x2.hpp \
+		glm/detail/type_mat2x2.inl \
+		glm/matrix.hpp \
+		glm/mat2x3.hpp \
+		glm/ext/matrix_double2x3.hpp \
+		glm/detail/type_mat2x3.hpp \
+		glm/detail/type_mat2x3.inl \
+		glm/ext/matrix_double2x3_precision.hpp \
+		glm/ext/matrix_float2x3.hpp \
+		glm/ext/matrix_float2x3_precision.hpp \
+		glm/mat2x4.hpp \
+		glm/ext/matrix_double2x4.hpp \
+		glm/detail/type_mat2x4.hpp \
+		glm/detail/type_mat2x4.inl \
+		glm/ext/matrix_double2x4_precision.hpp \
+		glm/ext/matrix_float2x4.hpp \
+		glm/ext/matrix_float2x4_precision.hpp \
+		glm/mat3x2.hpp \
+		glm/ext/matrix_double3x2.hpp \
+		glm/detail/type_mat3x2.hpp \
+		glm/detail/type_mat3x2.inl \
+		glm/ext/matrix_double3x2_precision.hpp \
+		glm/ext/matrix_float3x2.hpp \
+		glm/ext/matrix_float3x2_precision.hpp \
+		glm/mat3x3.hpp \
+		glm/ext/matrix_double3x3.hpp \
+		glm/detail/type_mat3x3.hpp \
+		glm/detail/type_mat3x3.inl \
+		glm/ext/matrix_double3x3_precision.hpp \
+		glm/ext/matrix_float3x3.hpp \
+		glm/ext/matrix_float3x3_precision.hpp \
+		glm/mat3x4.hpp \
+		glm/ext/matrix_double3x4.hpp \
+		glm/detail/type_mat3x4.hpp \
+		glm/detail/type_mat3x4.inl \
+		glm/ext/matrix_double3x4_precision.hpp \
+		glm/ext/matrix_float3x4.hpp \
+		glm/ext/matrix_float3x4_precision.hpp \
+		glm/mat4x2.hpp \
+		glm/ext/matrix_double4x2.hpp \
+		glm/detail/type_mat4x2.hpp \
+		glm/detail/type_mat4x2.inl \
+		glm/ext/matrix_double4x2_precision.hpp \
+		glm/ext/matrix_float4x2.hpp \
+		glm/ext/matrix_float4x2_precision.hpp \
+		glm/mat4x3.hpp \
+		glm/ext/matrix_double4x3.hpp \
+		glm/detail/type_mat4x3.hpp \
+		glm/detail/type_mat4x3.inl \
+		glm/ext/matrix_double4x3_precision.hpp \
+		glm/ext/matrix_float4x3.hpp \
+		glm/ext/matrix_float4x3_precision.hpp \
+		glm/mat4x4.hpp \
+		glm/ext/matrix_double4x4.hpp \
+		glm/detail/type_mat4x4.hpp \
+		glm/detail/type_mat4x4.inl \
+		glm/detail/type_mat4x4_simd.inl \
+		glm/ext/matrix_double4x4_precision.hpp \
+		glm/ext/matrix_float4x4.hpp \
+		glm/ext/matrix_float4x4_precision.hpp \
+		glm/detail/func_matrix.inl \
+		glm/geometric.hpp \
+		glm/detail/func_geometric.inl \
+		glm/exponential.hpp \
+		glm/detail/type_vec1.hpp \
+		glm/detail/type_vec1.inl \
+		glm/detail/func_exponential.inl \
+		glm/vector_relational.hpp \
+		glm/detail/func_vector_relational.inl \
+		glm/detail/func_vector_relational_simd.inl \
+		glm/detail/_vectorize.hpp \
+		glm/detail/func_exponential_simd.inl \
+		glm/simd/exponential.h \
+		glm/common.hpp \
+		glm/detail/func_common.inl \
+		glm/detail/compute_common.hpp \
+		glm/detail/func_common_simd.inl \
+		glm/simd/common.h \
+		glm/detail/func_geometric_simd.inl \
+		glm/simd/geometric.h \
+		glm/detail/func_matrix_simd.inl \
+		glm/simd/matrix.h \
+		glm/ext/matrix_double2x2_precision.hpp \
+		glm/ext/matrix_float2x2.hpp \
+		glm/ext/matrix_float2x2_precision.hpp \
+		glm/trigonometric.hpp \
+		glm/detail/func_trigonometric.inl \
+		glm/detail/func_trigonometric_simd.inl \
+		glm/packing.hpp \
+		glm/detail/func_packing.inl \
+		glm/detail/type_half.hpp \
+		glm/detail/type_half.inl \
+		glm/detail/func_packing_simd.inl \
+		glm/integer.hpp \
+		glm/detail/func_integer.inl \
+		glm/detail/func_integer_simd.inl \
+		glm/simd/integer.h \
+		shader.h \
+		glm/gtc/type_ptr.hpp \
+		glm/gtc/quaternion.hpp \
+		glm/gtc/constants.hpp \
+		glm/ext/scalar_constants.hpp \
+		glm/ext/scalar_constants.inl \
+		glm/gtc/constants.inl \
+		glm/gtc/matrix_transform.hpp \
+		glm/ext/matrix_projection.hpp \
+		glm/ext/matrix_projection.inl \
+		glm/ext/matrix_clip_space.hpp \
+		glm/ext/matrix_clip_space.inl \
+		glm/ext/matrix_transform.hpp \
+		glm/ext/matrix_transform.inl \
+		glm/gtc/matrix_transform.inl \
+		glm/ext/vector_relational.hpp \
+		glm/ext/vector_relational.inl \
+		glm/detail/type_float.hpp \
+		glm/ext/quaternion_common.hpp \
+		glm/ext/quaternion_geometric.hpp \
+		glm/ext/quaternion_geometric.inl \
+		glm/ext/quaternion_common.inl \
+		glm/ext/quaternion_common_simd.inl \
+		glm/ext/quaternion_float.hpp \
+		glm/detail/type_quat.hpp \
+		glm/ext/quaternion_relational.hpp \
+		glm/ext/quaternion_relational.inl \
+		glm/detail/type_quat.inl \
+		glm/detail/type_quat_simd.inl \
+		glm/ext/quaternion_float_precision.hpp \
+		glm/ext/quaternion_double.hpp \
+		glm/ext/quaternion_double_precision.hpp \
+		glm/ext/quaternion_trigonometric.hpp \
+		glm/ext/quaternion_trigonometric.inl \
+		glm/ext/quaternion_transform.hpp \
+		glm/ext/quaternion_transform.inl \
+		glm/gtc/quaternion.inl \
+		glm/gtc/epsilon.hpp \
+		glm/gtc/epsilon.inl \
+		glm/gtc/quaternion_simd.inl \
+		glm/gtc/vec1.hpp \
+		glm/ext/vector_bool1.hpp \
+		glm/ext/vector_bool1_precision.hpp \
+		glm/ext/vector_float1.hpp \
+		glm/ext/vector_float1_precision.hpp \
+		glm/ext/vector_double1.hpp \
+		glm/ext/vector_double1_precision.hpp \
+		glm/ext/vector_int1.hpp \
+		glm/ext/vector_int1_sized.hpp \
+		glm/ext/vector_uint1.hpp \
+		glm/ext/vector_uint1_sized.hpp \
+		glm/gtc/type_ptr.inl \
+		texture.h \
+		assimp/include/assimp/scene.h \
+		assimp/include/assimp/types.h \
+		assimp/include/assimp/defs.h \
+		assimp/include/assimp/config.h \
+		assimp/include/assimp/vector2.h \
+		assimp/include/assimp/vector3.h \
+		assimp/include/assimp/color4.h \
+		assimp/include/assimp/matrix3x3.h \
+		assimp/include/assimp/matrix4x4.h \
+		assimp/include/assimp/quaternion.h \
+		assimp/include/assimp/vector2.inl \
+		assimp/include/assimp/vector3.inl \
+		assimp/include/assimp/color4.inl \
+		assimp/include/assimp/matrix3x3.inl \
+		assimp/include/assimp/matrix4x4.inl \
+		assimp/include/assimp/MathFunctions.h \
+		assimp/include/assimp/quaternion.inl \
+		assimp/include/assimp/texture.h \
+		assimp/include/assimp/Compiler/pushpack1.h \
+		assimp/include/assimp/Compiler/poppack1.h \
+		assimp/include/assimp/mesh.h \
+		assimp/include/assimp/aabb.h \
+		assimp/include/assimp/light.h \
+		assimp/include/assimp/camera.h \
+		assimp/include/assimp/material.h \
+		assimp/include/assimp/material.inl \
+		assimp/include/assimp/anim.h \
+		assimp/include/assimp/metadata.h \
+		assimp/include/assimp/Compiler/pstdint.h \
+		src/vendor/stb_image/stb_image.h \
+		glm/gtx/rotate_vector.hpp \
+		glm/gtx/transform.hpp \
+		glm/gtx/transform.inl \
+		glm/gtx/rotate_vector.inl \
+		glm/gtx/vector_angle.hpp \
+		glm/gtx/quaternion.hpp \
+		glm/ext/quaternion_exponential.hpp \
+		glm/ext/quaternion_exponential.inl \
+		glm/gtx/norm.hpp \
+		glm/gtx/component_wise.hpp \
+		glm/gtx/component_wise.inl \
+		glm/gtx/norm.inl \
+		glm/gtx/quaternion.inl \
+		glm/gtx/vector_angle.inl \
+		bounds.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\kurve.o kurve.cpp
+
 debug/logger.o: logger.cpp logger.h \
 		mainwindow.h \
 		C:/Qt/6.3.2/mingw_64/include/QtWidgets/QMainWindow \
@@ -3343,6 +3708,8 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		toolbox.h \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/qrandom.h \
+		kurve.h \
+		visuallineobject.h \
 		logger.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
@@ -4429,6 +4796,8 @@ debug/physicsobject.o: physicsobject.cpp physicsobject.h \
 		toolbox.h \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/qrandom.h \
+		kurve.h \
+		visuallineobject.h \
 		WorldCoordinator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\physicsobject.o physicsobject.cpp
 
@@ -4827,6 +5196,8 @@ debug/renderwindow.o: renderwindow.cpp renderwindow.h \
 		toolbox.h \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.3.2/mingw_64/include/QtCore/qrandom.h \
+		kurve.h \
+		visuallineobject.h \
 		C:/Qt/6.3.2/mingw_64/include/QtGui/QOpenGLContext \
 		C:/Qt/6.3.2/mingw_64/include/QtGui/QOpenGLFunctions \
 		C:/Qt/6.3.2/mingw_64/include/QtGui/qopenglfunctions.h \

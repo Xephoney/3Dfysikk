@@ -5,6 +5,7 @@ debug/bounds.o
 debug/camera.o
 debug/cubemap.o
 debug/gridplane.o
+debug/kurve.o
 debug/logger.o
 debug/mainwindow.o
 debug/mesh.o

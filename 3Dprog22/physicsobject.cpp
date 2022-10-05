@@ -7,7 +7,7 @@ PhysicsObject::PhysicsObject() : OctahedronBall(3,"plainshader")
 
 PhysicsObject::PhysicsObject(int index, std::string shader) : OctahedronBall(index, shader)
 {
-
+    m_curve=new kurve;
 }
 
 PhysicsObject::~PhysicsObject()
@@ -18,11 +18,13 @@ PhysicsObject::~PhysicsObject()
 void PhysicsObject::init(GLint matrixUniform)
 {
     OctahedronBall::init(matrixUniform);
+    m_curve->init(matrixUniform);
 }
 
 void PhysicsObject::draw(const glm::mat4 &pMat)
 {
     OctahedronBall::draw(pMat);
+    m_curve->draw(pMat);
 }
 
 void PhysicsObject::tick(const float &dt)
@@ -61,10 +63,25 @@ void PhysicsObject::tick(const float &dt)
             //ingen trekant til trekant
             glm::vec3 d = m_velocity;
             m_velocity = d - glm::dot(d, n)*n;
+            hitGround=true;
         }
     }
 
+    if(hitGround){
+        if(timeSinceCheck>interval){
+            glm::vec3 cPosition=mPosition;
+            cPoints.push_back(cPosition);
+            timeSinceCheck=0.f;
+            //qDebug()<<"Created cPoint at :"<<cPosition.x<<" "<<cPosition.y<<" "<<cPosition.z;
+            m_curve->update(cPosition);
+        }
+        timeSinceCheck+=dt;
+
+    }
+
     calculateAcceleration();
+
+
 
     m_velocity += m_acceleration * m_weight* dt;
     mPosition +=  m_velocity * dt;
